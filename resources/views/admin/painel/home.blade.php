@@ -20,7 +20,11 @@
         </div>
     @endif
 
-    <div class="row">
+    <div class="h1 ml-3 font-weight-bold text-primary text-uppercase mb-1">
+        Bem-vindo(a) ao painel administrativo da 1 Job!
+    </div>
+
+    {{-- <div class="row">
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
@@ -98,9 +102,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="row">
+    {{-- <div class="row">
 
         <!-- Content Column -->
         <div class="col-lg-6 mb-4">
@@ -216,5 +220,5 @@
             </div>
 
         </div>
-    </div>
+    </div> --}}
 @endsection
