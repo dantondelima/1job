@@ -14,15 +14,7 @@
                                     <h1 class="h4 text-gray-900 mb-4">{{ __('Login') }}</h1>
                                 </div>
 
-                                @if ($errors->any())
-                                    <div class="alert alert-danger border-left-danger" role="alert">
-                                        <ul class="pl-4 my-2">
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+                                @include('inc.feedback')
 
                                 <form method="POST" action="{{ route('admin.logar') }}" class="user">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

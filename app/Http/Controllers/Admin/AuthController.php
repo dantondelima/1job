@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResetPasswordRequest;
+use App\Mail\ResetPasswordMail;
 use App\Models\Admin;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +24,7 @@ class AuthController extends Controller
         }
         else
         {
-            return back()->with('error', 'Invalid email or password');
+            return back()->with('error', 'Dados inválidos');
         }
     }
 
@@ -46,8 +48,9 @@ class AuthController extends Controller
         $user = Admin::where('email', '=', $request->email)->first();
 
         if ($user == null || $user->count() < 1) {
-            return redirect()->back()->withError('User does not exist');
+            return redirect()->back()->withError('o usuário informado não existe');
         }
+
         DB::table('password_resets')->insert([
             'email' => $request->email,
             'token' => Str::random(40),
@@ -57,13 +60,14 @@ class AuthController extends Controller
         $tokenData = DB::table('password_resets')
             ->where('email', $request->email)->orderBy('created_at', 'desc')
             ->first();
-        $link = url('admin/password/reset/' . $tokenData->token . '?email=' . urlencode($request->email));
+        $link = url('admin/senha/reset/' . $tokenData->token . '?email=' . urlencode($request->email));
+
         try{
-            Mail::to($request->email)->send(new ResetPassword($link, $user->name));
-            return redirect()->back()->with('success', "A reset link has been sent to your email address.");
+            Mail::to($request->email)->send(new ResetPasswordMail($link, $user->nome));
+            return redirect()->back()->with('success', "Um link de recuperação foi enviado para o seu email.");
         }
         catch(\Exception $ex){
-            return redirect()->back()->with('error', 'Something went wrong. Please try again.');
+            return redirect()->back()->with('error', 'Algo deu errado!');
         }
     }
 
@@ -77,15 +81,14 @@ class AuthController extends Controller
         ->where('token', $request->token)->first();
 
         $user = Admin::where('email', $tokenData->email)->first();
-
-        $user->password = Hash::make($request->password);
-        $user->update();
+        $user->password = $request->password;
+        $user->save();
 
         //Delete the token
         DB::table('password_resets')->where('email', $user->email)
         ->delete();
 
-        return view("admin.auth.login")->with('success', "Password change successfully!");
+        return redirect(route('admin.login'))->with('success', "Senha alterada com sucesso!");
     }
 
 }
