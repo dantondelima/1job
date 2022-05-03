@@ -20,7 +20,7 @@ class AdminRequest extends FormRequest
                     'nome' => 'required',
                     'email' => 'required|unique:admins,email',
                     'password' => 'required|confirmed',
-                    'status' => 'required',
+                    'ativo' => 'required',
                 ];
             }
             case 'PUT':
@@ -29,7 +29,7 @@ class AdminRequest extends FormRequest
                     'nome' => 'required',
                     'email' => 'required|unique:admins,email,'.$this->admin->id,
                     'password' => 'confirmed',
-                    'status' => 'required',
+                    'ativo' => 'required',
                 ];
             }
             default: break;
@@ -43,7 +43,8 @@ class AdminRequest extends FormRequest
             'email.required' => 'O email é obrigatório',
             'email.unique' => 'Email já cadastrado',
             'password.required' => 'A senha é obrigatória',
-            'password.confirmed' => 'Senhas não conferem'
+            'password.confirmed' => 'Senhas não conferem',
+            'ativo.required' => 'O status é obrigatório',
         ];
     }
 }

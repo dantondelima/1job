@@ -16,3 +16,12 @@
         <strong>{{ session('finded') }}</strong>
     </div>
 @endif
+
+{{-- @if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ $error }}</strong>
+        </div>
+    @endforeach
+@endif --}}

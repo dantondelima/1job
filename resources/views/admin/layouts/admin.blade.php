@@ -12,20 +12,7 @@
 
     <title>{{config('app.name')}} - @yield('title')</title>
 
-    <!-- Fonts -->
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-
-    {{-- ESTILOS --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
-
-    <!-- Favicon -->
-    <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
-
-    <link href="{{ asset('/css/style-galeria.css') }}" rel="stylesheet" />
+    @include('admin.includes.includes')
 </head>
 <body id="page-top">
 
@@ -124,34 +111,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{ __('Ready to Leave?') }}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Deseja sair?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Clique em "logout" para encerrar a sessão atual.</div>
             <div class="modal-footer">
-                <button class="btn btn-link" type="button" data-dismiss="modal">{{ __('Cancel') }}</button>
-                @if (Auth::guard('admin')->user() != null)
-                    <a class="btn btn-danger" href="{{ route('admin.logout') }}">{{ __('Logout') }}</a>
-                @else
-                    <a class="btn btn-danger" href="{{ route('gerenciamento.logout') }}">{{ __('Logout') }}</a>
-                @endif
+                <button class="btn btn-link" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-danger" href="{{ route('admin.logout') }}">{{ __('Logout') }}</a>
             </div>
         </div>
     </div>
 </div>
-<!-- Scripts -->
-<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
-{{-- ImgUpload --}}
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="{{ asset('vendor/imgupload/js/jquery.dm-uploader.min.js') }}"></script>
-<script src="{{ asset('vendor/imgupload/js/ui.js') }}"></script>
-<script src="{{ asset('vendor/imgupload/js/config.js') }}"></script>
-@yield('scripts')
+@include('admin.includes.scripts')
 </body>
 </html>

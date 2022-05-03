@@ -44,7 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($admins as $admin)
+                    @forelse ($admins as $admin)
                         <tr>
                             <td class="">{{$admin->id}}</td>
                             <td  class="col-md-4">{{$admin->nome}}</td>
@@ -59,9 +59,16 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <div class="h1 ml-3 font-weight-bold text-primary text-uppercase mb-1">
+                            Nenhuma dica encontrada
+                        </div>
+                    @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="row justify-content-center">
+            {{ $admins->links() }}
         </div>
     </div>
 </div>
