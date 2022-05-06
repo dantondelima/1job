@@ -41,6 +41,16 @@ class AbstractService implements ServiceInterface
     }
 
     /**
+     * Filter and paginate registers
+     *
+     * @return array
+     */
+    public function filterPaginate(string $search, array $searchFields, int $limit): mixed
+    {
+        return $this->repository->filterPaginate($search, $searchFields, $limit);
+    }
+
+    /**
      * Create new register
      *
      * @param array $data

@@ -3,22 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminRequest;
-use App\Models\Admin;
-use App\Services\Interfaces\AdminServiceInterface;
+use App\Http\Requests\EmpresaRequest;
+use App\Services\Interfaces\CidadeServiceInterface;
+use App\Services\Interfaces\EmpresaServiceInterface;
+use App\Services\Interfaces\EnderecoServiceInterface;
+use App\Services\Interfaces\EstadoServiceInterface;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class EmpresaController extends Controller
 {
-    private AdminServiceInterface $service;
+    private EmpresaServiceInterface $service;
+    private EnderecoServiceInterface $enderecoService;
+    private EstadoServiceInterface $estadoService;
+    private CidadeServiceInterface $cidadeService;
+
     private array $searchFields = [
         'nome',
         'email',
     ];
 
-    public function __construct(AdminServiceInterface $service)
+    public function __construct(EmpresaServiceInterface $service, EnderecoServiceInterface $enderecoService, EstadoServiceInterface $estadoService, CidadeServiceInterface $cidadeService)
     {
         $this->service = $service;
+        $this->enderecoService = $enderecoService;
+        $this->estadoService = $estadoService;
+        $this->cidadeService = $cidadeService;
     }
 
     public function index(Request $request){
@@ -26,8 +35,9 @@ class AdminController extends Controller
         return view('admin.painel.admins.admins-list')->with(['admins' => $admins, 'request' => $request->all()]);
     }
 
-    public function show(Admin $admin){
-        return view('admin.painel.admins.admins-show')->with('admin', $admin);
+    public function show($empresa){
+        $empresa = $this->service->find($empresa);
+        return view('admin.painel.admins.admins-show')->with('empresa', $empresa);
     }
 
     public function create(){

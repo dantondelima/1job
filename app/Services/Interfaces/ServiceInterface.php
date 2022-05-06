@@ -11,6 +11,8 @@ interface ServiceInterface
 
     public function all(): Collection;
 
+    public function filterPaginate(string $search, array $searchFields, int $limit): mixed;
+
     public function create(array $data): bool|Model;
 
     public function update(int $id, array $data): bool;
