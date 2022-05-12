@@ -22,6 +22,6 @@ class EstadoRepository implements EstadoRepositoryInterface
 
     public function all(): Collection
     {
-        return $this->model::all();
+        return $this->model::orderby('sigla', 'asc')->get();
     }
 }

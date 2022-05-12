@@ -35,7 +35,7 @@ class AdminController extends Controller
     }
 
     public function store(AdminRequest $request){
-        $result = $this->service->create($request->all());
+        $admin = $this->service->create($request->all());
         return back()->with('success', 'Registro criado com sucesso');
     }
 
@@ -44,7 +44,7 @@ class AdminController extends Controller
     }
 
     public function update(AdminRequest $request, Admin $admin){
-        $result = $this->service->update($admin->id, $request->all());
+        $admin = $this->service->update($admin->id, $request->all());
         return back()->with('success', 'Registro atualizado com sucesso');
     }
 

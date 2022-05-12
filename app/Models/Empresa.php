@@ -9,9 +9,9 @@ class Empresa extends Model
 {
     use HasFactory;
 
-    protected $table = 'cidades';
+    protected $table = 'empresas';
 
     protected $fillable = [
-        'cnpj', 'razao_social', 'nome_fantasia', 'inscricao_estadual', 'email', 'password', 'endereco_id'
+        'cnpj', 'razao_social', 'nome_fantasia', 'email', 'password', /* 'endereco_id' , 'telefone',*/ 'ativo'
     ];
 }

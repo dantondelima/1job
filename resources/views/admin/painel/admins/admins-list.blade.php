@@ -25,7 +25,7 @@
                 <div class="col-md-8">
                 </div>
                 <div class="col-md-3 col-xs-12">
-                    <input type="text" class="form-control" name="busca" value="{{ isset($request['busca'])?$request['busca']:'' }}" placeholder="Buscar">
+                    <input type="text" class="form-control" name="search" value="{{ isset($request['search'])?$request['search']:'' }}" placeholder="Buscar">
                 </div>
                 <div class="col-md-1 col-xs-12">
                     <button type="submit" class="btn btn-primary form-control" style="color:white"><i class="fa fa-search"></i></button>
@@ -61,7 +61,7 @@
                         </tr>
                     @empty
                         <div class="h1 ml-3 font-weight-bold text-primary text-uppercase mb-1">
-                            Nenhuma dica encontrada
+                            Nenhuma administrador encontrado
                         </div>
                     @endforelse
                 </tbody>

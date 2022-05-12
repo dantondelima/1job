@@ -2,12 +2,18 @@
 
 namespace App\Services;
 
-use App\Services\Interfaces\EstadoServiceInterface;
+use App\Repositories\CidadeRepository;
+use App\Services\Interfaces\CidadeServiceInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class EstadoService implements EstadoServiceInterface
+class CidadeService implements CidadeServiceInterface
 {
+    public function __construct(CidadeRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function find(int $id): Model
     {
         return $this->repository->find($id);

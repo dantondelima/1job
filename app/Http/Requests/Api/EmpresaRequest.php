@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api;
 
+use App\Http\Requests\Api\FormRequest as ApiFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmpresaRequest extends FormRequest
+class EmpresaRequest extends ApiFormRequest
 {
     public function authorize()
     {
@@ -20,8 +21,8 @@ class EmpresaRequest extends FormRequest
                     'razao_social' => 'required',
                     'nome_fantasia' => 'required',
                     'email' => 'required|unique:empresas,email',
-                    'password' => 'required|confirmed',
-                    'ativo' => 'required',
+                    'password' => 'required',
+                    // 'ativo' => 'required',
                 ];
             }
             case 'PUT':
@@ -32,7 +33,7 @@ class EmpresaRequest extends FormRequest
                     'nome_fantasia' => 'required',
                     'email' => 'required|unique:admins,email,'.$this->admin->id,
                     'password' => 'confirmed',
-                    'ativo' => 'required',
+                    // 'ativo' => 'required',
                 ];
             }
             default: break;

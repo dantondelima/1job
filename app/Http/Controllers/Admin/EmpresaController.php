@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmpresaRequest;
+use App\Models\Empresa;
 use App\Services\Interfaces\CidadeServiceInterface;
 use App\Services\Interfaces\EmpresaServiceInterface;
 use App\Services\Interfaces\EnderecoServiceInterface;
@@ -18,8 +19,10 @@ class EmpresaController extends Controller
     private CidadeServiceInterface $cidadeService;
 
     private array $searchFields = [
-        'nome',
+        'nome_fantasia',
         'email',
+        'cnpj',
+        'razao_social'
     ];
 
     public function __construct(EmpresaServiceInterface $service, EnderecoServiceInterface $enderecoService, EstadoServiceInterface $estadoService, CidadeServiceInterface $cidadeService)
@@ -31,30 +34,32 @@ class EmpresaController extends Controller
     }
 
     public function index(Request $request){
-        $admins = $this->service->filterPaginate($request->busca, $this->searchFields, 1);
-        return view('admin.painel.admins.admins-list')->with(['admins' => $admins, 'request' => $request->all()]);
+        $empresas = $this->service->filterPaginate($request->search, $this->searchFields, 1);
+        return view('admin.painel.empresas.empresas-list')->with(['empresas' => $empresas, 'request' => $request->all()]);
     }
 
     public function show($empresa){
         $empresa = $this->service->find($empresa);
-        return view('admin.painel.admins.admins-show')->with('empresa', $empresa);
+        return view('admin.painel.empresas.empresas-show')->with('empresa', $empresa);
     }
 
     public function create(){
-        return view('admin.painel.admins.admins-create');
+        // $estados = $this->estadoService->all();
+        // $cidades = $this->cidadeService->all();
+        return view('admin.painel.empresas.empresas-create')/*->with(['estados' => $estados, 'cidades' => $cidades])*/;
     }
 
-    public function store(AdminRequest $request){
-        $result = $this->service->create($request->all());
+    public function store(EmpresaRequest $request){
+        $empresa = $this->service->create($request->all());
         return back()->with('success', 'Registro criado com sucesso');
     }
 
-    public function edit(Admin $admin){
-        return view('admin.painel.admins.admins-edit')->with('admin', $admin);
+    public function edit(Empresa $empresa){
+        return view('admin.painel.empresas.empresas-edit')->with('empresa', $empresa);
     }
 
-    public function update(AdminRequest $request, Admin $admin){
-        $result = $this->service->update($admin->id, $request->all());
+    public function update(AdminRequest $request, Empresa $empresa){
+        $result = $this->service->update($empresa->id, $request->all());
         return back()->with('success', 'Registro atualizado com sucesso');
     }
 

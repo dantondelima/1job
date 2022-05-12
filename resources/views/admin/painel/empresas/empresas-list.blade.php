@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-7"></div>
             <div class="col-md-2 col-xs-12">
-                    <a class="btn btn-primary form-control" href="{{ route('admin.admins.create') }}" style="color:white">Criar novo</a>
+                    <a class="btn btn-primary form-control" href="{{ route('admin.empresas.create') }}" style="color:white">Criar nova</a>
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@
                 <div class="col-md-8">
                 </div>
                 <div class="col-md-3 col-xs-12">
-                    <input type="text" class="form-control" name="busca" value="{{ isset($request['busca'])?$request['busca']:'' }}" placeholder="Buscar">
+                    <input type="text" class="form-control" name="search" value="{{ isset($request['search'])?$request['search']:'' }}" placeholder="Buscar">
                 </div>
                 <div class="col-md-1 col-xs-12">
                     <button type="submit" class="btn btn-primary form-control" style="color:white"><i class="fa fa-search"></i></button>
@@ -38,21 +38,23 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nome</th>
+                        <th>Razão social</th>
+                        <th>CNPJ</th>
                         <th>Email</th>
                         <th style="text-align:center" colspan="3">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($admins as $admin)
+                    @forelse ($empresas as $empresa)
                         <tr>
-                            <td class="">{{$admin->id}}</td>
-                            <td  class="col-md-4">{{$admin->nome}}</td>
-                            <td  class="col-md-4">{{$admin->email}}</td>
-                            <td class="col-md-1"><a role="button" href="{{ route('admin.admins.show', ['admin' => $admin->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-eye"></i>  </a></td>
-                            <td class="col-md-1"><a role="button" href="{{ route('admin.admins.edit', ['admin' => $admin->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-edit"></i>  </a></td>
+                            <td class="">{{$empresa->id}}</td>
+                            <td  class="col-md-4">{{$empresa->razao_social}}</td>
+                            <td  class="col-md-4">{{$empresa->cnpj}}</td>
+                            <td  class="col-md-4">{{$empresa->email}}</td>
+                            <td class="col-md-1"><a role="button" href="{{ route('admin.empresas.show', ['empresa' => $empresa->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-eye"></i>  </a></td>
+                            <td class="col-md-1"><a role="button" href="{{ route('admin.empresas.edit', ['empresa' => $empresa->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-edit"></i>  </a></td>
                             <td class="col-md-1">
-                                <form action="{{ route("admin.admins.destroy", ['admin' => $admin->id])}}" method="POST">
+                                <form action="{{ route("admin.empresas.destroy", ['empresa' => $empresa->id])}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-user btn-block classe-deletar"><i class="fa fa-trash"></i> </button>
@@ -60,15 +62,15 @@
                             </td>
                         </tr>
                     @empty
-                        <div class="h1 ml-3 font-weight-bold text-primary text-uppercase mb-1">
-                            Nenhuma dica encontrada
-                        </div>
+                        <tr>
+                            <td style="font-size:25px;" colspan="5"><b>Nenhuma empresa encontrada</b></td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
         <div class="row justify-content-center">
-            {{ $admins->links() }}
+            {{ $empresas->links() }}
         </div>
     </div>
 </div>
