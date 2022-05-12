@@ -48,6 +48,12 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\CheckAdmin::class
         ],
 
+        'empresa' => [
+            'throttle:60,1',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\CheckEmpresa::class
+        ],
+
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,

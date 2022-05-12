@@ -46,6 +46,12 @@ return [
             'provider' => 'admin',
         ],
 
+        'empresa' => [
+            'driver' => 'token',
+            'provider' => 'empresa',
+            'hash' => false,
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -79,6 +85,11 @@ return [
         'admin' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+
+        'empresa' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Empresa::class,
         ],
     ],
 

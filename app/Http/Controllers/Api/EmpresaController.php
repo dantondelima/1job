@@ -31,9 +31,21 @@ class EmpresaController extends Controller
         // $this->cidadeService = $cidadeService;
     }
 
+    public function login(Request $request)
+    {
+        try{
+            $result = $this->service->gerarToken($request->all());
+            $response = ResponseUtil::successResponse($result);
+        }catch (\Exception $ex){
+            dd($ex);
+            $response = ResponseUtil::errorResponse($ex);
+        }
+        return response()->json($response, $response['status_code']);
+    }
+
     public function show($empresa){
         try{
-            $empresa = $this->service->find($empresa)->toArray();
+            $empresa = $this->service->findByEmail($empresa)->toArray();
             $response = ResponseUtil::successResponse($empresa);
         }catch (\Exception $ex){
             $response = ResponseUtil::notFoundResponse();

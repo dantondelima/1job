@@ -27,7 +27,7 @@ class CreateEmpresasTable extends Migration
             // $table->string('nome_responsavel');
             // $table->string('email_responsavel');
             // $table->string('celular');
-            $table->boolean('ativo')->default(1);
+            $table->boolean('ativo')->default(0);
             $table->timestamps();
         });
     }
