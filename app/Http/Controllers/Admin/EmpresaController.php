@@ -58,15 +58,13 @@ class EmpresaController extends Controller
         return view('admin.painel.empresas.empresas-edit')->with('empresa', $empresa);
     }
 
-    public function update(AdminRequest $request, Empresa $empresa){
+    public function update(EmpresaRequest $request, Empresa $empresa){
         $result = $this->service->update($empresa->id, $request->all());
         return back()->with('success', 'Registro atualizado com sucesso');
     }
 
-    public function destroy(Admin $admin){
-        if($admin->id == 1)
-            return back()->with('error', 'Você não pode excluir o super admin');
-        $admin->delete();
+    public function destroy(Empresa $empresa){
+        $empresa->delete();
         return back()->with('success', 'Registro excluído com sucesso');
     }
 }

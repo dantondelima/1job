@@ -16,10 +16,11 @@ class Empresa extends Model
         'cnpj', 'razao_social', 'nome_fantasia', 'email', 'password', /* 'endereco_id' , 'telefone',*/ 'ativo'
     ];
 
+    protected $hidden = ['password'];
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
     }
 
-    protected $hidden = ['password'];
 }

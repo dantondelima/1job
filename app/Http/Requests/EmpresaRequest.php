@@ -27,10 +27,10 @@ class EmpresaRequest extends FormRequest
             case 'PUT':
             {
                 return [
-                    'cnpj' => 'required|unique:empresas,cnpj,'.$this->admin->id,
+                    'cnpj' => 'required|unique:empresas,cnpj,'.$this->empresa->id,
                     'razao_social' => 'required',
                     'nome_fantasia' => 'required',
-                    'email' => 'required|unique:admins,email,'.$this->admin->id,
+                    'email' => 'required|unique:empresas,email,'.$this->empresa->id,
                     'password' => 'confirmed',
                     'ativo' => 'required',
                 ];
