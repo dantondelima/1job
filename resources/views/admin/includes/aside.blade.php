@@ -35,6 +35,13 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('admin.candidatos.index') }}" >
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Candidatos</span>
+        </a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

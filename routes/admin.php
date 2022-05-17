@@ -17,6 +17,7 @@ Route::get('/senha/reset/{token}', [AuthController::class, 'reset'])->name('rese
 Route::post('/reset-password', [AuthController::class, 'resetar'])->name('resetar');
 
 Route::resource('admins', 'AdminController');
-
 Route::resource('empresas', 'EmpresaController');
+Route::resource('candidatos', 'CandidatoController');
+
 
