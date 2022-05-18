@@ -68,11 +68,10 @@ class EmpresaController extends Controller
         return response()->json($response, $response['status_code']);
     }
 
-    public function update(EmpresaRequest $request, $empresa){
+    public function update(EmpresaRequest $request, Empresa $empresa){
         try{
-            $result = $this->service->findByEmail($empresa);
             if($empresa){
-                $result = $this->service->update($result->id, $request->all());
+                $result = $this->service->update($empresa->id, $request->all());
                 $response = ResponseUtil::successUpdatedResponse($result);
                 return response()->json($response, $response['status_code']);
             }
