@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CandidatoController;
 use App\Http\Controllers\Api\EmpresaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,9 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/empresa', [EmpresaController::class, 'store']);
 Route::post('/empresa/login', [EmpresaController::class, 'login']);
-
 Route::group(['middleware' => 'empresa'], function () {
-    Route::get('/empresa/{empresa}', [EmpresaController::class, 'show']);
-    Route::put('/empresa/{id}', [EmpresaController::class, 'update']);
+    Route::get('/empresa/{empresa}', [EmpresaController::class, 'show']); //por email
+    Route::put('/empresa/{empresa}', [EmpresaController::class, 'update']); //por id
 });
 
+Route::post('/candidato', [CandidatoController::class, 'store']);
+Route::post('/candidato/login', [CandidatoController::class, 'login']);
+Route::group(['middleware' => 'candidato'], function () {
+    Route::get('/candidato/{candidato}', [CandidatoController::class, 'show']); //por email
+    Route::put('/candidato/{candidato}', [CandidatoController::class, 'update']); //por id
+});

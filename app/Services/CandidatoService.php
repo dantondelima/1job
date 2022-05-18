@@ -14,16 +14,16 @@ class CandidatoService extends AbstractService implements CandidatoServiceInterf
     {
         $user = $this->repository->findByEmail($data['email']);
         if(is_null($user) || !Hash::check($data['password'], $user->password)){
-            return ResponseUtil::notAuthorizedResponse();
+            return ResponseUtil::incorrectLogin();
         }
         $token = JWT::encode(
             ['email' => $data['email']],
             env('JWT_KEY_CANDIDATO'),
             'HS256'
         );
-        return [
+        return ResponseUtil::successResponse([
             'access_token' => $token
-        ];
+        ]);
     }
 
     public function findByEmail(string $data)

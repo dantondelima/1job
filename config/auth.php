@@ -52,6 +52,12 @@ return [
             'hash' => false,
         ],
 
+        'candidato' => [
+            'driver' => 'token',
+            'provider' => 'candidato',
+            'hash' => false,
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -90,6 +96,11 @@ return [
         'empresa' => [
             'driver' => 'eloquent',
             'model' => App\Models\Empresa::class,
+        ],
+
+        'candidato' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Candidato::class,
         ],
     ],
 

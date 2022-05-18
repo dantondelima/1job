@@ -54,6 +54,12 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\CheckEmpresa::class
         ],
 
+        'candidato' => [
+            'throttle:60,1',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\CheckCandidato::class
+        ],
+
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
