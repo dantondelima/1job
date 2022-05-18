@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\EmpresaRequest;
+use App\Http\Requests\Api\LoginRequest;
 use App\Models\Empresa;
 use App\Services\Interfaces\EmpresaServiceInterface;
 use App\Utils\ResponseUtil;
@@ -31,13 +32,11 @@ class EmpresaController extends Controller
         // $this->cidadeService = $cidadeService;
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         try{
-            $result = $this->service->gerarToken($request->all());
-            $response = ResponseUtil::successResponse($result);
+            $response = $this->service->gerarToken($request->all());
         }catch (\Exception $ex){
-            dd($ex);
             $response = ResponseUtil::errorResponse($ex);
         }
         return response()->json($response, $response['status_code']);
@@ -45,12 +44,16 @@ class EmpresaController extends Controller
 
     public function show($empresa){
         try{
-            $empresa = $this->service->findByEmail($empresa)->toArray();
-            $response = ResponseUtil::successResponse($empresa);
+            $empresa = $this->service->findByEmail($empresa);
+            if($empresa){
+                $response = ResponseUtil::successResponse($empresa->toArray());
+                return response()->json($response, $response['status_code']);
+            }
+
+            $response = ResponseUtil::notFoundResponse();
         }catch (\Exception $ex){
             $response = ResponseUtil::notFoundResponse();
         }
-
         return response()->json($response, $response['status_code']);
     }
 
@@ -65,15 +68,30 @@ class EmpresaController extends Controller
         return response()->json($response, $response['status_code']);
     }
 
-    public function update(EmpresaRequest $request, Empresa $empresa){
-        $result = $this->service->update($empresa->id, $request->all());
-        return back()->with('success', 'Registro atualizado com sucesso');
+    public function update(EmpresaRequest $request, $empresa){
+        try{
+            $result = $this->service->findByEmail($empresa);
+            if($empresa){
+                $result = $this->service->update($result->id, $request->all());
+                $response = ResponseUtil::successUpdatedResponse($result);
+                return response()->json($response, $response['status_code']);
+            }
+
+            $response = ResponseUtil::notFoundResponse();
+        }catch (\Exception $ex){
+            $response = ResponseUtil::errorResponse($ex);
+        }
+        return response()->json($response, $response['status_code']);
     }
 
-    public function destroy(Admin $admin){
-        if($admin->id == 1)
-            return back()->with('error', 'Você não pode excluir o super admin');
-        $admin->delete();
-        return back()->with('success', 'Registro excluído com sucesso');
+    public function destroy($id){
+        try{
+            $result = $this->service->delete($id);
+            $response = ResponseUtil::successDeletedResponse($result);
+        }catch (\Exception $ex){
+            $response = ResponseUtil::notFoundResponse();
+        }
+
+        return response()->json($response, $response['status_code']);
     }
 }

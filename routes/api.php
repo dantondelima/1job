@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/empresa', [EmpresaController::class, 'store']);
 Route::post('/empresa/login', [EmpresaController::class, 'login']);
+
 Route::group(['middleware' => 'empresa'], function () {
     Route::get('/empresa/{empresa}', [EmpresaController::class, 'show']);
+    Route::put('/empresa/{id}', [EmpresaController::class, 'update']);
 });
-// Route::resource('empresas', 'EmpresaController');
+

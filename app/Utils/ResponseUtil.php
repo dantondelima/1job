@@ -91,4 +91,13 @@ class ResponseUtil
             'error_description' => 'Unauthorized'
         ];
     }
+
+    public static function incorrectLogin(int $statusCode = Response::HTTP_UNAUTHORIZED): array
+    {
+        return [
+            'status_code' => $statusCode,
+            'error' => true,
+            'error_description' => 'Dados incorretos'
+        ];
+    }
 }

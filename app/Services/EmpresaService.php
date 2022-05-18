@@ -14,20 +14,25 @@ class EmpresaService extends AbstractService implements EmpresaServiceInterface
     {
         $user = $this->repository->findByEmail($data['email']);
         if(is_null($user) || !Hash::check($data['password'], $user->password)){
-            return ResponseUtil::notAuthorizedResponse();
+            return ResponseUtil::incorrectLogin();
         }
         $token = JWT::encode(
             ['email' => $data['email']],
             env('JWT_KEY_EMPRESA'),
             'HS256'
         );
-        return [
+        return ResponseUtil::successResponse([
             'access_token' => $token
-        ];
+        ]);
     }
 
     public function findByEmail(string $data)
     {
         return $this->repository->findByEmail($data);
+    }
+
+    public function update(int $id, array $data): bool
+    {
+        return $this->repository->update($id, $data);
     }
 }
