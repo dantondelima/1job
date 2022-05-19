@@ -9,6 +9,7 @@ use App\Models\Cidade;
 use App\Models\Empresa;
 use App\Models\Endereco;
 use App\Models\Estado;
+use App\Models\Vaga;
 use App\Repositories\AdminRepository;
 use App\Repositories\AreaRepository;
 use App\Repositories\CandidatoRepository;
@@ -23,6 +24,8 @@ use App\Repositories\Interfaces\CidadeRepositoryInterface;
 use App\Repositories\Interfaces\EmpresaRepositoryInterface;
 use App\Repositories\Interfaces\EnderecoRepositoryInterface;
 use App\Repositories\Interfaces\EstadoRepositoryInterface;
+use App\Repositories\Interfaces\VagaRepositoryInterface;
+use App\Repositories\VagaRepository;
 use App\Services\AdminService;
 use App\Services\AreaService;
 use App\Services\CandidatoService;
@@ -37,6 +40,8 @@ use App\Services\Interfaces\CidadeServiceInterface;
 use App\Services\Interfaces\EmpresaServiceInterface;
 use App\Services\Interfaces\EnderecoServiceInterface;
 use App\Services\Interfaces\EstadoServiceInterface;
+use App\Services\Interfaces\VagaServiceInterface;
+use App\Services\VagaService;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -106,12 +111,20 @@ class RepositoryServiceProvider extends ServiceProvider
             return new CidadeRepository(new Cidade());
         });
 
-        //Cidade
+        //Area
         $this->app->bind(AreaServiceInterface::class, function ($app) {
             return new AreaService($app->make(AreaRepositoryInterface::class));
         });
         $this->app->bind(AreaRepositoryInterface::class, function ($app) {
             return new AreaRepository(new Area());
+        });
+
+        //Vaga
+        $this->app->bind(VagaServiceInterface::class, function ($app) {
+            return new VagaService($app->make(VagaRepositoryInterface::class));
+        });
+        $this->app->bind(VagaRepositoryInterface::class, function ($app) {
+            return new VagaRepository(new Vaga());
         });
     }
 }

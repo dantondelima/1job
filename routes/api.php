@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CandidatoController;
 use App\Http\Controllers\Api\EmpresaController;
+use App\Http\Controllers\Api\VagaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,11 @@ Route::post('/empresa/login', [EmpresaController::class, 'login']);
 Route::group(['middleware' => 'empresa'], function () {
     Route::get('/empresa/{empresa}', [EmpresaController::class, 'show']); //por email
     Route::put('/empresa/{empresa}', [EmpresaController::class, 'update']); //por id
+    Route::get('/empresa/vagas/{empresa}', [VagaController::class, 'index']); //por id
+    Route::get('/vagas/{vaga}', [VagaController::class, 'show']); //por id
+    Route::post('/vagas', [VagaController::class, 'store']);
+    Route::put('/vagas/{vaga}', [VagaController::class, 'update']); //por id
+    Route::delete('/vagas/{vaga}', [VagaController::class, 'destroy']); //por id
 });
 
 Route::post('/candidato', [CandidatoController::class, 'store']);

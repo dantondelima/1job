@@ -23,4 +23,9 @@ class Empresa extends Model
         $this->attributes['password'] = Hash::make($value);
     }
 
+    public function vagas()
+    {
+        return $this->hasMany(Vaga::class);
+    }
+
 }
