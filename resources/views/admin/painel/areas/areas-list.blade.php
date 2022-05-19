@@ -1,21 +1,21 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Administradores')
+@section('title', 'Áreas')
 
 @section('main-content')
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Administradores</h1>
+<h1 class="h3 mb-2 text-gray-800">Áreas</h1>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <div class="row">
             <div class="col-md-3 col-xs-12">
-                <h6 class="m-0 font-weight-bold text-primary">Gerenciamento de administradores</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Gerenciamento de áreas</h6>
             </div>
             <div class="col-md-7"></div>
             <div class="col-md-2 col-xs-12">
-                    <a class="btn btn-primary form-control" href="{{ route('admin.admins.create') }}" style="color:white">Criar novo</a>
+                <a class="btn btn-primary form-control" href="{{ route('admin.areas.create') }}" style="color:white">Criar nova</a>
             </div>
         </div>
     </div>
@@ -39,20 +39,19 @@
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
-                        <th>Email</th>
                         <th style="text-align:center" colspan="3">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($admins as $admin)
+                    @forelse ($areas as $area)
                         <tr>
-                            <td class="">{{$admin->id}}</td>
-                            <td  class="col-md-4">{{$admin->nome}}</td>
-                            <td  class="col-md-4">{{$admin->email}}</td>
-                            <td class="col-md-1"><a role="button" href="{{ route('admin.admins.show', ['admin' => $admin->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-eye"></i>  </a></td>
-                            <td class="col-md-1"><a role="button" href="{{ route('admin.admins.edit', ['admin' => $admin->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-edit"></i>  </a></td>
+                            <td class="">{{$area->id}}</td>
+                            <td  class="col-md-4">{{$area->nome}}</td>
+                            <td  class="col-md-4">{{$area->email}}</td>
+                            <td class="col-md-1"><a role="button" href="{{ route('admin.areas.show', ['area' => $area->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-eye"></i>  </a></td>
+                            <td class="col-md-1"><a role="button" href="{{ route('admin.areas.edit', ['area' => $area->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-edit"></i>  </a></td>
                             <td class="col-md-1">
-                                <form action="{{ route("admin.admins.destroy", ['admin' => $admin->id])}}" method="POST">
+                                <form action="{{ route("admin.areas.destroy", ['area' => $area->id])}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-user btn-block classe-deletar"><i class="fa fa-trash"></i> </button>
@@ -68,7 +67,7 @@
             </table>
         </div>
         <div class="row justify-content-center">
-            {{ $admins->links() }}
+            {{ $areas->links() }}
         </div>
     </div>
 </div>

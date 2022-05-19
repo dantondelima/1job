@@ -41,6 +41,27 @@
             <span>Candidatos</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('admin.candidatos.index') }}" >
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Recrutadores</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#vagas" aria-expanded="true"
+            aria-controls="acervo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Vagas</span>
+        </a>
+        <div id="vagas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Vagas:</h6>
+                <a class="collapse-item" href="{{ route('admin.areas.index') }}">Áreas</a>
+                {{-- <a class="collapse-item" href="{{ route('admin.upload') }}">Grupos</a> --}}
+                {{-- <a class="collapse-item" href="{{ route('admin.upload') }}">Marcas</a> --}}
+            </div>
+        </div>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

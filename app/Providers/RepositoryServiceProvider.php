@@ -3,30 +3,35 @@
 namespace App\Providers;
 
 use App\Models\Admin;
+use App\Models\Area;
 use App\Models\Candidato;
 use App\Models\Cidade;
 use App\Models\Empresa;
 use App\Models\Endereco;
 use App\Models\Estado;
 use App\Repositories\AdminRepository;
+use App\Repositories\AreaRepository;
 use App\Repositories\CandidatoRepository;
 use App\Repositories\CidadeRepository;
 use App\Repositories\EmpresaRepository;
 use App\Repositories\EnderecoRepository;
 use App\Repositories\EstadoRepository;
 use App\Repositories\Interfaces\AdminRepositoryInterface;
+use App\Repositories\Interfaces\AreaRepositoryInterface;
 use App\Repositories\Interfaces\CandidatoRepositoryInterface;
 use App\Repositories\Interfaces\CidadeRepositoryInterface;
 use App\Repositories\Interfaces\EmpresaRepositoryInterface;
 use App\Repositories\Interfaces\EnderecoRepositoryInterface;
 use App\Repositories\Interfaces\EstadoRepositoryInterface;
 use App\Services\AdminService;
+use App\Services\AreaService;
 use App\Services\CandidatoService;
 use App\Services\CidadeService;
 use App\Services\EmpresaService;
 use App\Services\EnderecoService;
 use App\Services\EstadoService;
 use App\Services\Interfaces\AdminServiceInterface;
+use App\Services\Interfaces\AreaServiceInterface;
 use App\Services\Interfaces\CandidatoServiceInterface;
 use App\Services\Interfaces\CidadeServiceInterface;
 use App\Services\Interfaces\EmpresaServiceInterface;
@@ -99,6 +104,14 @@ class RepositoryServiceProvider extends ServiceProvider
         });
         $this->app->bind(CidadeRepositoryInterface::class, function ($app) {
             return new CidadeRepository(new Cidade());
+        });
+
+        //Cidade
+        $this->app->bind(AreaServiceInterface::class, function ($app) {
+            return new AreaService($app->make(AreaRepositoryInterface::class));
+        });
+        $this->app->bind(AreaRepositoryInterface::class, function ($app) {
+            return new AreaRepository(new Area());
         });
     }
 }

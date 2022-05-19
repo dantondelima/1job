@@ -19,5 +19,6 @@ Route::post('/reset-password', [AuthController::class, 'resetar'])->name('reseta
 Route::resource('admins', 'AdminController');
 Route::resource('empresas', 'EmpresaController');
 Route::resource('candidatos', 'CandidatoController');
+Route::resource('areas', 'AreaController');
 
 
