@@ -14,4 +14,10 @@ class Recrutador extends Model
     protected $fillable = [
         'nome', 'email', 'cpf', 'password', 'ativo', 'empresa_id', 'confirmado'
     ];
+
+    protected $hidden = ['password'];
+
+    public function empresa(){
+        return $this->belongsTo(Empresa::class);
+    }
 }

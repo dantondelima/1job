@@ -32,6 +32,11 @@
                     </div>
                     <div class="h5 ml-5 font-weight-bold text-gray-800 mb-3">{{ $recrutador->email }}</div>
                     <hr class="sidebar-divider mb-1">
+                    <div class="h5 ml-3 mt-2 font-weight-bold text-primary text-uppercase mb-1">
+                        Empresa:
+                    </div>
+                    <div class="h5 ml-5 font-weight-bold text-gray-800 mb-3">{{ $recrutador->empresa->razao_social }}</div>
+                    <hr class="sidebar-divider mb-1">
                     <div class="h5 ml-3 mt-2 font-weight-bold text-primary text-uppercase mb-3">
                         Status:
                     </div>

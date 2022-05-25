@@ -27,9 +27,10 @@ Route::group(['middleware' => 'empresa'], function () {
     //empresa
     Route::get('/empresa/{empresa}', [EmpresaController::class, 'show']); //por email
     Route::put('/empresa/{empresa}', [EmpresaController::class, 'update']); //por id
-    Route::get('/empresa/vagas/{empresa}', [VagaController::class, 'index']); //por id
+
 
     //vagas
+    Route::get('/empresa/vagas/{empresa}', [VagaController::class, 'index']); //por id
     Route::get('/vagas/{vaga}', [VagaController::class, 'show']); //por id
     Route::post('/vagas', [VagaController::class, 'store']);
     Route::put('/vagas/{vaga}', [VagaController::class, 'update']); //por id
