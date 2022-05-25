@@ -24,6 +24,7 @@ class VagaRequest extends ApiFormRequest
                     'modalidade' => 'required',
                     'descricao' => 'required',
                     'empresa_id' => 'required',
+                    'area_id' => 'required',
                 ];
             }
             case 'PUT':
@@ -36,6 +37,7 @@ class VagaRequest extends ApiFormRequest
                     'modalidade' => 'required',
                     'descricao' => 'required',
                     'empresa_id' => 'required',
+                    'area_id' => 'required',
                 ];
             }
             default: break;
@@ -52,6 +54,7 @@ class VagaRequest extends ApiFormRequest
             'modalidade.required' => 'A modalidade é obrigatória',
             'descricao.required' => 'A descrição é obrigatória',
             'empresa_id.required' => 'A empresa é obrigatória',
+            'area_id.required' => 'A área é obrigatória',
         ];
     }
 }
