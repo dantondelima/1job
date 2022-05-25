@@ -9,6 +9,7 @@ use App\Models\Cidade;
 use App\Models\Empresa;
 use App\Models\Endereco;
 use App\Models\Estado;
+use App\Models\Recrutador;
 use App\Models\Vaga;
 use App\Repositories\AdminRepository;
 use App\Repositories\AreaRepository;
@@ -24,7 +25,9 @@ use App\Repositories\Interfaces\CidadeRepositoryInterface;
 use App\Repositories\Interfaces\EmpresaRepositoryInterface;
 use App\Repositories\Interfaces\EnderecoRepositoryInterface;
 use App\Repositories\Interfaces\EstadoRepositoryInterface;
+use App\Repositories\Interfaces\RecrutadorRepositoryInterface;
 use App\Repositories\Interfaces\VagaRepositoryInterface;
+use App\Repositories\RecrutadorRepository;
 use App\Repositories\VagaRepository;
 use App\Services\AdminService;
 use App\Services\AreaService;
@@ -40,7 +43,9 @@ use App\Services\Interfaces\CidadeServiceInterface;
 use App\Services\Interfaces\EmpresaServiceInterface;
 use App\Services\Interfaces\EnderecoServiceInterface;
 use App\Services\Interfaces\EstadoServiceInterface;
+use App\Services\Interfaces\RecrutadorServiceInterface;
 use App\Services\Interfaces\VagaServiceInterface;
+use App\Services\RecrutadorService;
 use App\Services\VagaService;
 use Illuminate\Support\ServiceProvider;
 
@@ -125,6 +130,14 @@ class RepositoryServiceProvider extends ServiceProvider
         });
         $this->app->bind(VagaRepositoryInterface::class, function ($app) {
             return new VagaRepository(new Vaga());
+        });
+
+        //Recrutador
+        $this->app->bind(RecrutadorServiceInterface::class, function ($app) {
+            return new RecrutadorService($app->make(RecrutadorRepositoryInterface::class));
+        });
+        $this->app->bind(RecrutadorRepositoryInterface::class, function ($app) {
+            return new RecrutadorRepository(new Recrutador());
         });
     }
 }

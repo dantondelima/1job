@@ -42,7 +42,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('admin.candidatos.index') }}" >
+        <a class="nav-link collapsed" href="{{ route('admin.recrutadors.index') }}" >
             <i class="fas fa-fw fa-cog"></i>
             <span>Recrutadores</span>
         </a>
@@ -57,8 +57,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Vagas:</h6>
                 <a class="collapse-item" href="{{ route('admin.areas.index') }}">Áreas</a>
-                {{-- <a class="collapse-item" href="{{ route('admin.upload') }}">Grupos</a> --}}
-                {{-- <a class="collapse-item" href="{{ route('admin.upload') }}">Marcas</a> --}}
+                <a class="collapse-item" href="{{ route('admin.vagas.index') }}">Vagas</a>
             </div>
         </div>
     </li>

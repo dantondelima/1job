@@ -18,7 +18,11 @@ class CreateRecrutadorsTable extends Migration
             $table->string('nome');
             $table->string('email')->unique();
             $table->string('cpf')->unique();
+            $table->string('password')->nullable();
+            $table->unsignedInteger('empresa_id');
+            $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
             $table->boolean('ativo')->default(0);
+            $table->boolean('confirmado')->default(0);
             $table->timestamps();
         });
     }

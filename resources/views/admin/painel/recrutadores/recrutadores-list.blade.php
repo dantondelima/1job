@@ -1,21 +1,21 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Candidatos')
+@section('title', 'Recrutadores')
 
 @section('main-content')
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Candidatos</h1>
+<h1 class="h3 mb-2 text-gray-800">Recrutadores</h1>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <div class="row">
             <div class="col-md-3 col-xs-12">
-                <h6 class="m-0 font-weight-bold text-primary">Gerenciamento de candidatos</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Gerenciamento de recrutadores</h6>
             </div>
             <div class="col-md-7"></div>
             <div class="col-md-2 col-xs-12">
-                    <a class="btn btn-primary form-control" href="{{ route('admin.candidatos.create') }}" style="color:white">Criar novo</a>
+                    <a class="btn btn-primary form-control" href="{{ route('admin.recrutadors.create') }}" style="color:white">Criar novo</a>
             </div>
         </div>
     </div>
@@ -45,16 +45,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($candidatos as $candidato)
+                    @forelse ($recrutadores as $recrutador)
                         <tr>
-                            <td class="">{{$candidato->id}}</td>
-                            <td  class="col-md-4">{{$candidato->nome}}</td>
-                            <td  class="col-md-4">{{$candidato->cpf}}</td>
-                            <td  class="col-md-4">{{$candidato->email}}</td>
-                            <td class="col-md-1"><a role="button" href="{{ route('admin.candidatos.show', ['candidato' => $candidato->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-eye"></i>  </a></td>
-                            <td class="col-md-1"><a role="button" href="{{ route('admin.candidatos.edit', ['candidato' => $candidato->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-edit"></i>  </a></td>
+                            <td class="">{{$recrutador->id}}</td>
+                            <td  class="col-md-4">{{$recrutador->nome}}</td>
+                            <td  class="col-md-4">{{$recrutador->cpf}}</td>
+                            <td  class="col-md-4">{{$recrutador->email}}</td>
+                            <td class="col-md-1"><a role="button" href="{{ route('admin.recrutadors.show', ['recrutador' => $recrutador->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-eye"></i>  </a></td>
+                            <td class="col-md-1"><a role="button" href="{{ route('admin.recrutadors.edit', ['recrutador' => $recrutador->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-edit"></i>  </a></td>
                             <td class="col-md-1">
-                                <form action="{{ route("admin.candidatos.destroy", ['candidato' => $candidato->id])}}" method="POST">
+                                <form action="{{ route("admin.recrutadors.destroy", ['recrutador' => $recrutador->id])}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-user btn-block classe-deletar"><i class="fa fa-trash"></i> </button>
@@ -63,14 +63,14 @@
                         </tr>
                     @empty
                         <tr>
-                            <td style="font-size:25px;" colspan="5"><b>Nenhum candidato encontrado</b></td>
+                            <td style="font-size:25px;" colspan="5"><b>Nenhum recrutador encontrado</b></td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
         <div class="row justify-content-center">
-            {{ $candidatos->links() }}
+            {{ $recrutadores->links() }}
         </div>
     </div>
 </div>

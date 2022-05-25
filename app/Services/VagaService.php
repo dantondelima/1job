@@ -11,4 +11,9 @@ class VagaService extends AbstractService implements VagaServiceInterface
     {
         return $this->repository->findByEmpresa($data);
     }
+
+    public function findWithRelations(int $data)
+    {
+        return $this->repository->findWithRelations($data);
+    }
 }
