@@ -11,4 +11,9 @@ class VagaRepository extends AbstractRepository implements VagaRepositoryInterfa
     {
         return $this->model::where('email', $data)->first();
     }
+
+    public function findWithRelations(int $data)
+    {
+        return $this->model::with(['area', 'empresa', 'recrutador'])->where('id', $data)->first();
+    }
 }

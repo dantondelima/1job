@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests;
 
-use App\Http\Requests\Api\FormRequest as ApiFormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class VagaRequest extends ApiFormRequest
+class VagaRequest extends FormRequest
 {
     public function authorize()
     {
@@ -23,8 +23,8 @@ class VagaRequest extends ApiFormRequest
                     'remuneracao' => 'required',
                     'modalidade' => 'required',
                     'descricao' => 'required',
-                    'empresa_id' => 'required',
                     'area_id' => 'required',
+                    'empresa_id' => 'required',
                 ];
             }
             case 'PUT':
@@ -36,8 +36,8 @@ class VagaRequest extends ApiFormRequest
                     'remuneracao' => 'required',
                     'modalidade' => 'required',
                     'descricao' => 'required',
-                    'empresa_id' => 'required',
                     'area_id' => 'required',
+                    'empresa_id' => 'required',
                 ];
             }
             default: break;
@@ -49,12 +49,12 @@ class VagaRequest extends ApiFormRequest
         return [
             'titulo.required' => 'O título é obrigatório',
             'regime_contratual.required' => 'O regime contratual é obrigatório',
-            'quantidade.required' => 'A quantidade fantasia é obrigatória',
+            'quantidade.required' => 'A quantidade é obrigatória',
             'remuneracao.required' => 'A remuneração é obrigatória',
             'modalidade.required' => 'A modalidade é obrigatória',
             'descricao.required' => 'A descrição é obrigatória',
-            'empresa_id.required' => 'A empresa é obrigatória',
             'area_id.required' => 'A área é obrigatória',
+            'empresa_id.required' => 'A empresa é obrigatória',
         ];
     }
 }

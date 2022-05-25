@@ -28,4 +28,9 @@ class Empresa extends Model
         return $this->hasMany(Vaga::class);
     }
 
+    public function recrutadores()
+    {
+        return $this->hasMany(Recrutador::class);
+    }
+
 }
