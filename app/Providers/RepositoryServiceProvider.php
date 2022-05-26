@@ -9,6 +9,7 @@ use App\Models\Cidade;
 use App\Models\Empresa;
 use App\Models\Endereco;
 use App\Models\Estado;
+use App\Models\EtapaProcesso;
 use App\Models\Recrutador;
 use App\Models\Vaga;
 use App\Repositories\AdminRepository;
@@ -18,6 +19,7 @@ use App\Repositories\CidadeRepository;
 use App\Repositories\EmpresaRepository;
 use App\Repositories\EnderecoRepository;
 use App\Repositories\EstadoRepository;
+use App\Repositories\EtapaProcessoRepository;
 use App\Repositories\Interfaces\AdminRepositoryInterface;
 use App\Repositories\Interfaces\AreaRepositoryInterface;
 use App\Repositories\Interfaces\CandidatoRepositoryInterface;
@@ -25,6 +27,7 @@ use App\Repositories\Interfaces\CidadeRepositoryInterface;
 use App\Repositories\Interfaces\EmpresaRepositoryInterface;
 use App\Repositories\Interfaces\EnderecoRepositoryInterface;
 use App\Repositories\Interfaces\EstadoRepositoryInterface;
+use App\Repositories\Interfaces\EtapaProcessoRepositoryInterface;
 use App\Repositories\Interfaces\RecrutadorRepositoryInterface;
 use App\Repositories\Interfaces\VagaRepositoryInterface;
 use App\Repositories\RecrutadorRepository;
@@ -36,6 +39,7 @@ use App\Services\CidadeService;
 use App\Services\EmpresaService;
 use App\Services\EnderecoService;
 use App\Services\EstadoService;
+use App\Services\EtapaProcessoService;
 use App\Services\Interfaces\AdminServiceInterface;
 use App\Services\Interfaces\AreaServiceInterface;
 use App\Services\Interfaces\CandidatoServiceInterface;
@@ -43,6 +47,7 @@ use App\Services\Interfaces\CidadeServiceInterface;
 use App\Services\Interfaces\EmpresaServiceInterface;
 use App\Services\Interfaces\EnderecoServiceInterface;
 use App\Services\Interfaces\EstadoServiceInterface;
+use App\Services\Interfaces\EtapaProcessoServiceInterface;
 use App\Services\Interfaces\RecrutadorServiceInterface;
 use App\Services\Interfaces\VagaServiceInterface;
 use App\Services\RecrutadorService;
@@ -138,6 +143,14 @@ class RepositoryServiceProvider extends ServiceProvider
         });
         $this->app->bind(RecrutadorRepositoryInterface::class, function ($app) {
             return new RecrutadorRepository(new Recrutador());
+        });
+
+        //Recrutador
+        $this->app->bind(EtapaProcessoServiceInterface::class, function ($app) {
+            return new EtapaProcessoService($app->make(EtapaProcessoRepositoryInterface::class));
+        });
+        $this->app->bind(EtapaProcessoRepositoryInterface::class, function ($app) {
+            return new EtapaProcessoRepository(new EtapaProcesso());
         });
     }
 }

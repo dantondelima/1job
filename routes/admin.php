@@ -23,5 +23,5 @@ Route::resource('recrutadors', 'RecrutadorController');
 Route::get('recrutadores/por-empresa', 'RecrutadorController@findByEmpresa')->name('recrutadors.lista_por_empresa');
 Route::resource('areas', 'AreaController');
 Route::resource('vagas', 'VagaController');
-
-
+Route::resource('vagas.etapa-processo', 'EtapasProcessoController');
+Route::post('admin/vagas/etapa-processo/salvar-ordem',  'EtapasProcessoController@salvaOrdem')->name('etapas.salva.ordenacao');

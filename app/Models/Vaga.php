@@ -30,4 +30,9 @@ class Vaga extends Model
     {
         return $this->belongsTo(Recrutador::class);
     }
+
+    public function etapas()
+    {
+        return $this->hasMany(EtapaProcesso::class);
+    }
 }

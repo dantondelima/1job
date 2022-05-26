@@ -27,7 +27,7 @@ class CreateVagasTable extends Migration
             $table->foreign('area_id')->references('id')->on('areas');
             $table->unsignedInteger('recrutador_id')->nullable();
             $table->foreign('recrutador_id')->references('id')->on('recrutadores');
-            $table->boolean('ativa')->default(0);
+            $table->boolean('ativa')->default(1);
             $table->boolean('encerrada')->default(0);
             $table->timestamps();
         });

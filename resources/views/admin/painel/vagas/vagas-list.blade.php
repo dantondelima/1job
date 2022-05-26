@@ -39,8 +39,8 @@
                     <tr>
                         <th>#</th>
                         <th>Título</th>
-                        <th>Regime Contratual</th>
-                        <th>Modalidade</th>
+                        <th>Etapas</th>
+                        <th>Inscrições</th>
                         <th style="text-align:center" colspan="3">Ações</th>
                     </tr>
                 </thead>
@@ -49,10 +49,10 @@
                         <tr>
                             <td class="">{{$vaga->id}}</td>
                             <td  class="col-md-4">{{$vaga->titulo}}</td>
-                            <td  class="col-md-4">{{$vaga->regime_contratual}}</td>
-                            <td  class="col-md-4">{{$vaga->modalidade}}</td>
-                            <td class="col-md-1"><a role="button" href="{{ route('admin.vagas.show', ['vaga' => $vaga->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-eye"></i>  </a></td>
-                            <td class="col-md-1"><a role="button" href="{{ route('admin.vagas.edit', ['vaga' => $vaga->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-edit"></i>  </a></td>
+                            <td  class="col-md-4"><a role="button" href="{{ route('admin.vagas.etapa-processo.index', ['vaga' => $vaga->id])}}" class="btn btn-primary btn-user btn-block">Etapas</a></td>
+                            <td  class="col-md-4"><a role="button" href="{{ route('admin.vagas.show', ['vaga' => $vaga->id])}}" class="btn btn-primary btn-user btn-block">Inscrições</a></td>
+                            <td class="col-md-1"><a role="button" href="{{ route('admin.vagas.show', ['vaga' => $vaga->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-eye"></i></a></td>
+                            <td class="col-md-1"><a role="button" href="{{ route('admin.vagas.edit', ['vaga' => $vaga->id])}}" class="btn btn-primary btn-user btn-block"> <i class="fa fa-edit"></i></a></td>
                             <td class="col-md-1">
                                 <form action="{{ route("admin.vagas.destroy", ['vaga' => $vaga->id])}}" method="POST">
                                     @csrf
