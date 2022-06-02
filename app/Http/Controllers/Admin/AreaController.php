@@ -21,7 +21,7 @@ class AreaController extends Controller
     }
 
     public function index(Request $request){
-        $areas = $this->service->filterPaginate($request->busca, $this->searchFields, 1);
+        $areas = $this->service->filterPaginate($request->busca, $this->searchFields, 10);
         return view('admin.painel.areas.areas-list')->with(['areas' => $areas, 'request' => $request->all()]);
     }
 

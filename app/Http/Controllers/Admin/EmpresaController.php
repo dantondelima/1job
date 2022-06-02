@@ -34,7 +34,7 @@ class EmpresaController extends Controller
     }
 
     public function index(Request $request){
-        $empresas = $this->service->filterPaginate($request->search, $this->searchFields, 1);
+        $empresas = $this->service->filterPaginate($request->search, $this->searchFields, 10);
         return view('admin.painel.empresas.empresas-list')->with(['empresas' => $empresas, 'request' => $request->all()]);
     }
 

@@ -27,7 +27,7 @@ class RecrutadorController extends Controller
     }
 
     public function index(Request $request){
-        $recrutadores = $this->service->filterPaginate($request->search, $this->searchFields, 1);
+        $recrutadores = $this->service->filterPaginate($request->search, $this->searchFields, 10);
         return view('admin.painel.recrutadores.recrutadores-list')->with(['recrutadores' => $recrutadores, 'request' => $request->all()]);
     }
 

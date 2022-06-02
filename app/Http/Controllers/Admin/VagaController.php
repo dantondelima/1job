@@ -33,7 +33,7 @@ class VagaController extends Controller
     }
 
     public function index(Request $request){
-        $vagas = $this->service->filterPaginate($request->search, $this->searchFields, 1);
+        $vagas = $this->service->filterPaginate($request->search, $this->searchFields, 10);
         return view('admin.painel.vagas.vagas-list')->with(['vagas' => $vagas, 'request' => $request->all()]);
     }
 

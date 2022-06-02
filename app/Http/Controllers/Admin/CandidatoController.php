@@ -33,7 +33,7 @@ class CandidatoController extends Controller
     }
 
     public function index(Request $request){
-        $candidatos = $this->service->filterPaginate($request->search, $this->searchFields, 1);
+        $candidatos = $this->service->filterPaginate($request->search, $this->searchFields, 10);
         return view('admin.painel.candidatos.candidatos-list')->with(['candidatos' => $candidatos, 'request' => $request->all()]);
     }
 

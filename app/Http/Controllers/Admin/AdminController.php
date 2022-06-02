@@ -22,7 +22,7 @@ class AdminController extends Controller
     }
 
     public function index(Request $request){
-        $admins = $this->service->filterPaginate($request->busca, $this->searchFields, 1);
+        $admins = $this->service->filterPaginate($request->busca, $this->searchFields, 10);
         return view('admin.painel.admins.admins-list')->with(['admins' => $admins, 'request' => $request->all()]);
     }
 
