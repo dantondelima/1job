@@ -45,7 +45,15 @@ class VagaController extends Controller
     public function create(){
         $empresas = $this->empresaService->all();
         $areas = $this->areaService->all();
-        return view('admin.painel.vagas.vagas-create')->with(['empresas' => $empresas, 'areas' => $areas]);
+        $regimes_contratuais = Vaga::REGIMES_CONTRATUAIS;
+        $modalidades = Vaga::MODALIDADES;
+        return view('admin.painel.vagas.vagas-create')
+                ->with([
+                        'empresas' => $empresas, 
+                        'areas' => $areas, 
+                        'regimes' => $regimes_contratuais, 
+                        'modalidades' => $modalidades
+                    ]);
     }
 
     public function store(VagaRequest $request){

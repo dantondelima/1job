@@ -43,8 +43,9 @@
                                         <label class="form-control-label" for="regime_contratual">Regime contratual<span class="small text-danger">*</span></label>
                                         <select class="form-control form-control-user{{ $errors->has('regime_contratual') ? ' is-invalid' : '' }}" name="regime_contratual" id="regime_contratual" required>
                                             <option value="">Selecione o regime contratual</option>
-                                            <option value="CLT" {{ old('regime_contratual') == "CLT"?"selected":"" }}>CLT</option>
-                                            <option value="PJ"  {{ old('regime_contratual') == "PJ"?"selected":"" }}>PJ</option>
+                                            @foreach ($regimes as $i => $regime)
+                                                <option value="{{ $i }}" {{ old('regime_contratual') == $i?"selected":"" }}>{{ $regime }}</option>
+                                            @endforeach
                                         </select>
                                         @if ($errors->has('regime_contratual'))
                                             <small class="text-danger" role="alert">
@@ -92,9 +93,9 @@
                                         <label class="form-control-label" for="modalidade">Modalidade<span class="small text-danger">*</span></label>
                                         <select class="form-control form-control-user{{ $errors->has('modalidade') ? ' is-invalid' : '' }}" name="modalidade" id="modalidade" required>
                                             <option value="">Selecione a modalidade</option>
-                                            <option value="Presencial"  {{ old('modalidade') == "Presencial"?"selected":"" }}>Presencial</option>
-                                            <option value="Remoto"  {{ old('modalidade') == "Remoto"?"selected":"" }}>Remoto</option>
-                                            <option value="Híbrido"  {{ old('modalidade') == "Híbrido"?"selected":"" }}>Híbrido</option>
+                                            @foreach ($modalidades as $key => $modalidade)
+                                                <option value="{{ $i }}"  {{ old('modalidade') == $i?"selected":"" }}>{{ $modalidade }}</option>
+                                            @endforeach
                                         </select>
                                         @if ($errors->has('modalidade'))
                                             <small class="text-danger" role="alert">

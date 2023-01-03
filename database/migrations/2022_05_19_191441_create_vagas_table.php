@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Vaga;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ class CreateVagasTable extends Migration
         Schema::create('vagas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo');
-            $table->string('regime_contratual');
+            $table->int('regime_contratual');
             $table->unsignedInteger('quantidade');
             $table->string('remuneracao');
             $table->string('modalidade');
@@ -27,8 +28,8 @@ class CreateVagasTable extends Migration
             $table->foreign('area_id')->references('id')->on('areas');
             $table->unsignedInteger('recrutador_id')->nullable();
             $table->foreign('recrutador_id')->references('id')->on('recrutadores');
-            $table->boolean('ativa')->default(1);
-            $table->boolean('encerrada')->default(0);
+            $table->boolean('ativa')->default(Vaga::STATUS_ATIVO);
+            $table->boolean('encerrada')->default(Vaga::STATUS_INATIVO);
             $table->timestamps();
         });
     }
